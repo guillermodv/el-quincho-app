@@ -49,7 +49,6 @@ export default function Home() {
         </Link>
       </div>
       <div className="flex flex-col text-center">
-        // Aca va la imagen comiendo empanadas
         {/* <Image
           className="relative drop-shadow-[0_0_0.3rem_#ffffff70] "
           src="/jamonYmorrones.jpg"
