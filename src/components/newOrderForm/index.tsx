@@ -6,6 +6,7 @@ import { Suspense, useCallback, useContext } from "react";
 
 import { BackLabel, CartFooter, GoBackButton } from "@/components";
 import { CartContext } from "@/context";
+import useGetData from "@/hooks/useGetData";
 import useToast from "@/hooks/useToast";
 import { Toaster } from "react-hot-toast";
 import { CartItem, Product, shop } from "../../data/shopData";
@@ -43,6 +44,7 @@ export default function NewOrderForm() {
   );
 
   const { notifyAdded } = useToast();
+  const { data } = useGetData();
 
   return (
     <Suspense>
@@ -64,56 +66,57 @@ export default function NewOrderForm() {
           <div className="font-mono md:text-xl text-sm p-2">
             {`Pedido a entregar en: ${address}`}
           </div>
-          {categories?.map((category, key) => (
-            <div className="md:w-4/5 w-full px-2" key={key}>
-              <div className="flex flex-col">
-                <div className="font-bold md:text-xl text-orange-500 text-sm pt-2">
-                  {category.name.toUpperCase()}
-                </div>
-              </div>
-              <div className="grid sm:grid-cols-4 grid-cols-2 gap-4">
-                {category.subcategories?.map((subcategory, key) => (
-                  <div
-                    key={key}
-                    className="border-gray-400 border-2 mb-1 rounded-md bg-slate-200 p-2 flex flex-col justify-between"
-                  >
-                    <Image
-                      src={subcategory.image} // Asegúrate de que `subcategory.image` es una URL válida
-                      alt={subcategory.name}
-                      width={200} // Ajusta el tamaño según tus necesidades
-                      height={200} // Ajusta el tamaño según tus necesidades
-                      className="w-full h-48 object-cover rounded-t-md"
-                    />
-                    <div className="px-4 py-2 flex flex-col justify-between flex-grow">
-                      <div className="font-bold text-sm md:text-xl mb-2">
-                        {subcategory.name}
-                      </div>
-                      <p className="text-gray-700 text-sm md:text-xl">
-                        {subcategory.description}
-                      </p>
-                      <div className="flex justify-between items-center mt-4">
-                        <div className="md:text-xl text-sm font-bold">
-                          ${subcategory.price}
-                        </div>
-                        <button
-                          onClick={() => {
-                            notifyAdded(), onAdd(subcategory, 1);
-                          }}
-                          className={
-                            isSelected(subcategory.name)
-                              ? selectedStyle
-                              : nonSelectedStyle
-                          }
-                        >
-                          +
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+          <div className="md:w-4/5 w-full px-2">
+            <div className="flex flex-col">
+              <div className="font-bold md:text-xl text-orange-500 text-sm pt-2">
+                {"PRODUCTOS".toUpperCase()}
               </div>
             </div>
-          ))}
+            <div className="grid sm:grid-cols-4 grid-cols-2 gap-4">
+              {data.length === 0 && (
+                <div className="text-red-500 font-bold">Cargando datos...</div>
+              )}
+              {data?.map((subcategory: any, key) => (
+                <div
+                  key={key}
+                  className="border-gray-400 border-2 mb-1 rounded-md bg-slate-200 p-2 flex flex-col justify-between"
+                >
+                  <Image
+                    src={subcategory.image} // Asegúrate de que `subcategory.image` es una URL válida
+                    alt={subcategory.name}
+                    width={200} // Ajusta el tamaño según tus necesidades
+                    height={200} // Ajusta el tamaño según tus necesidades
+                    className="w-full h-48 object-cover rounded-t-md"
+                  />
+                  <div className="px-4 py-2 flex flex-col justify-between flex-grow">
+                    <div className="font-bold text-sm md:text-xl mb-2">
+                      {subcategory.name}
+                    </div>
+                    <p className="text-gray-700 text-sm md:text-xl">
+                      {subcategory.description}
+                    </p>
+                    <div className="flex justify-between items-center mt-4">
+                      <div className="md:text-xl text-sm font-bold">
+                        ${subcategory.price}
+                      </div>
+                      <button
+                        onClick={() => {
+                          notifyAdded(), onAdd(subcategory, 1);
+                        }}
+                        className={
+                          isSelected(subcategory.name)
+                            ? selectedStyle
+                            : nonSelectedStyle
+                        }
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
           <CartFooter
             productCount={cart.length}
             params={searchParams}
