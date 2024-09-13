@@ -33,7 +33,12 @@ export default function Home() {
       <div className="flex flex-col place-items-center lg:w-10/12 w-12/12 md:w-10/12 bg-gray-300 p-2 font-extrabold md:text-xl">
         {Label.WORK_ZONE_TITLE.toUpperCase()}
         <div className="p-2">
-          <iframe width="400" height="300" src={mapUrl} title="Aldo"></iframe>
+          <iframe
+            width="400"
+            height="300"
+            src={mapUrl}
+            title="Quincho"
+          ></iframe>
         </div>
       </div>
       <div className="flex flex-col place-items-center lg:w-10/12  w-96 md:w-10/12 bg-white text-black p-4">

@@ -43,7 +43,7 @@ export default function OrderForm() {
             <Image
               src="/logo.jpeg"
               className="mx-4 my-2"
-              alt="Logo Aldo"
+              alt="Logo quincho"
               width={120}
               height={380}
             />
@@ -63,6 +63,7 @@ export default function OrderForm() {
                 </div>
                 {category.subcategories?.map((subcategory, key) => (
                   <div key={key}>
+                    JSON.stringify( ){" "}
                     <div className="flex flex-row w-full border-gray-400 border-2 mb-1 rounded-md bg-slate-200">
                       <div className="flex flex-row w-full justify-between  border-blue-400 border-2">
                         <div className="flex flex-col">

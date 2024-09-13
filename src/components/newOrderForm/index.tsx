@@ -49,9 +49,9 @@ export default function NewOrderForm() {
       <div>
         <div className="flex flex-col place-items-center w-full bg-gray-200 text-black">
           <Image
-            src="/logo.jpeg"
+            src="/empanadas.png"
             className="mx-4 my-2"
-            alt="Logo Aldo"
+            alt="Logo quincho"
             width={120}
             height={380}
           />
