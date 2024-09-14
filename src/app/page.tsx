@@ -54,14 +54,14 @@ export default function Home() {
         </Link>
       </div>
       <div className="flex flex-col text-center">
-        {/* <Image
+        <Image
           className="relative drop-shadow-[0_0_0.3rem_#ffffff70] "
-          src="/jamonYmorrones.jpg"
+          src="/shelbyEmpanada.png"
           alt="Logo"
           width={640}
           height={80}
           priority
-        /> */}
+        />
       </div>
       <OrderDetailForm />
       <div className="flex flex-col place-items-center lg:w-10/12  w-96 md:w-10/12 bg-slate-200 text-black p-4">
