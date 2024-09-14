@@ -14,10 +14,10 @@ export default function useGetData() {
   
         Papa.parse(csvText, {
           header: true,
-          complete: (result: any) => {
+          complete: (result) => {
             setData(result.data);
           },
-          error: (error: any) => {
+          error: (error) => {
             console.error("Error al leer el CSV:", error);
           },
         });
